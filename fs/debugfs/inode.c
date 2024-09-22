@@ -293,8 +293,8 @@ static int debugfs_show_options(struct seq_file *m, struct dentry *root)
 		seq_printf(m, ",uid=%u",
 			   from_kuid_munged(&init_user_ns, opts->uid));
 	if (!gid_eq(opts->gid, GLOBAL_ROOT_GID))
-		seq_printf(m, ",gid=%u",
-			   from_kgid_munged(&init_user_ns, opts->gid));
+    		seq_printf(m, ",gid=%u",
+              		   from_kuid_munged(&init_user_ns, kgid_to_kuid(opts->gid)));
 	if (opts->mode != DEBUGFS_DEFAULT_MODE)
 		seq_printf(m, ",mode=%o", opts->mode);
 	if (opts->privilege)
